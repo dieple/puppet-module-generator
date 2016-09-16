@@ -1,0 +1,80 @@
+#!/bin/bash
+# Create and configure a module using my gist
+# Tested on MacOSX El Captain
+# https://gist.github.com/jecnua/57024265332c03e9edd70647473a793e
+# To avoid breaking stuff this script works only
+# to create NEW modules. FOR NOW :)
+# Usage:
+# Download this script, chmod it 700 and try:
+# ./generate-module.sh aaa bbb
+
+if [ $# -ne 2 ]; then
+  echo 1>&2 "Usage: $0 username modulename"
+  exit 3
+fi
+
+USER=$1
+NAME=$2
+
+# Control if dir exists. To avoid breaking stuff this script works only
+# to create NEW modules. FOR NOW :)
+if [ -d "$NAME" ]; then
+  echo "Module already exists. Exiting."
+  exit 1
+fi
+# Create a new puppet module by auto-accepting defaults
+yes '' | puppet module generate $USER-$NAME
+mv $NAME $USER-$NAME
+cd $USER-$NAME
+# puppet module generate doesn't fill a field you need.
+# -i '' works on MAC
+sed -i '' 's/\"summary\": null/\"summary\": \"A module\"/' metadata.json
+rm -f README*
+rm -fr spec*
+git init .
+# For personal scripts
+mkdir utilities/
+# Get the script to connect to docker provider
+wget -O utilities/kl.sh https://gist.github.com/jecnua/86e1495c6e9367504829d62a3af6dcca/raw/
+chmod 700 utilities/kl.sh
+# Delete reports
+echo "rm -fr test/reports/*.html" > utilities/delete_reports.sh
+chmod 700 utilities/delete_reports.sh
+# Creating default puppetfile
+librarian-puppet init
+bundle init
+# Get the default gemfile
+wget -O Gemfile wget https://gist.github.com/jecnua/aefffebda8eeb8f9a541323bcdeb5815/raw/
+# Get the default .gitignore
+wget -O .gitignore wget https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
+# Get the default CHANGELOG.md
+wget -O CHANGELOG.md https://gist.github.com/jecnua/02e620b42b476a888844b38d1e7ec1c8/raw/
+# Get the default README.md
+wget -O README.md https://gist.github.com/jecnua/5c5f9bb6fd64c6eae0132cca062a7013/raw/
+#
+bundle install
+kitchen init
+# Download override example
+wget -O _RENAME_ME_.kitchen.local.yml https://gist.github.com/jecnua/005b432fc0cb7bbdbcf37dd6a060d5e8/raw/
+# Get the default kitchen.yml
+wget -O .kitchen.yml https://gist.github.com/jecnua/b3550ac1cab861bceb6f1b38644b9b2e/raw/
+#
+
+# Adding simple test in default test dir
+echo "class {'::$NAME':}" >> test/default.pp
+mkdir test/reports
+mkdir test/integration/default/serverspec/
+mkdir test/integration/default/serverspec/default/
+# Get spec helper
+wget -O test/integration/default/serverspec/spec_helper.rb https://gist.github.com/jecnua/788748542498a3ebf11b3ad025ee56fa/raw/
+# Get localhost test
+wget -O test/integration/default/serverspec/default/default_spec.rb https://gist.github.com/jecnua/004f45df291bfd8e86e72556f22ae0ab/raw/
+
+time kitchen converge
+time kitchen verify
+time rake validate
+
+git add .
+git commit -m 'First commit'
+
+echo "DONE"

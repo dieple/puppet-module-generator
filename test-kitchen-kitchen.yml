@@ -1,0 +1,51 @@
+---
+
+# NOTE: Every change/override and driver/platform level needs a destroy/converge
+driver:
+  name: docker
+  use_sudo: false  # Without this option, it fails on MAC
+
+platforms:
+- name: ubuntu  # Resolve on docker images on dockerhub
+  driver_config:
+    # require_chef_omnibus: true
+    use_cache: true
+    provision_command: #You need to recreate the container for this to work
+    - apt-get install --assume-yes net-tools nano vim telnet
+    # image: if you need to specify
+    # socket: <%= ENV['DOCKER_HOST'] %>
+    # dockerfile: ubuntu-dockerfile # In case you need more settings
+  run_list:
+  - recipe[apt]
+
+# https://github.com/neillturner/kitchen-puppet/blob/master/provisioner_options.md
+provisioner:
+  name: puppet_apply
+  #
+  manifests_path: test # Default dir created by test-kitchen
+  # manifest: default.pp # You need this or it fails. Put here when you instantiate your class
+  # puppet_version: 3.5.1-1puppetlabs1
+  # puppet_version: latest
+  files_path: files
+  modules_path: modules # You need this or it will fail
+  puppet_verbose: true
+  puppet_debug: false
+  # hiera_data_path: test/data
+  # hiera_config_path: test/hiera.yaml
+  # puppet_apt_collections_repo: "http://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb"
+  require_puppet_collections: true
+  require_chef_for_busser: false # ? READ MORE
+
+verifier:
+  name: shell
+  # command: rspec -c -f d -I test/integration/default/serverspec/ test/integration/default/serverspec/default/*_spec.rb
+
+suites:
+  - name: default
+    provisioner:
+      manifest: default.pp # You can override provisioner settings like this
+    verifier:
+      command: |
+        export NOW=$(date +"%Y_%m_%d_%H_%M_%S") # Get a timestamp for report name
+        export NEW_ENV_VAR='1.0.0'              # Example of exporting vars to serverspec
+        rspec -c -f d -I test/integration/default/serverspec/ test/integration/default/serverspec/default/*_spec.rb  --format documentation --format html --out test/reports/${NOW}_default.html
