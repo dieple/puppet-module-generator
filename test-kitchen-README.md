@@ -4,6 +4,16 @@ TBD
 
 ## Testing
 
+This framework use test kitchen. All you have to run here for this project is
+
+    kitchen command_1  # command says hello world
+    ..
+    kitchen command_x #command says changeme
+
+if you want to know more about test kitchen then visit https://goo.gl/TeGCEZ
+
+### Override the tests
+
 If you don't want to run all the tests, don't hack the main _.kitchen.yml_!
 Instead create a simpler *.kitchen.local.yml* to override it.
 To see and example of an override it just rename the file _.kitchen.local.yml.example_ to _.kitchen.local.yml_.
