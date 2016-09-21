@@ -1,6 +1,7 @@
 # Test kitchen and puppet
 .kitchen/
 .kitchen.local.yml
+__.kitchen.local.yml # For when you need to use the full suite
 .tmp/
 .librarian
 .bundle/
@@ -12,7 +13,7 @@ spec/*
 pkg/
 modules/
 vendor/
-utilities/
+__utilities/ # Personal scripts
 test/reports/*
 Gemfile.lock
 Puppetfile.lock
