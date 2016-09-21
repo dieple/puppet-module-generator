@@ -50,12 +50,20 @@ You can see the status of test-kitchen with:
 
 It's a little starnge to login via test-kitchen in a docker container.
 The usual _kitchen login_ command doesn't work. There is a script to do just
-that already in the repo:
+that already in the repo. If you have this machine:
 
-    ./utilities/kl.sh ubuntu
+    $ kitchen list
+    Instance                            Driver  Provisioner  Verifier  Transport  Last Action
+    solrcloud5-standalone-ubuntu-1404   Docker  PuppetApply  Shell     Ssh        Verified
 
-Should login automatically. Instead of _ubuntu_ just put the name of the machine
-you want to login.
+Do the following:
+
+    $ ./utilities/kl.sh solrcloud5-standalone-ubuntu-1404
+    spawn kitchen login solrcloud5-standalone-ubuntu-1404
+    Last login: Wed Sep 21 11:38:36 2016 from 172.17.0.1
+    kitchen@ece63fe9bcba:~$
+
+It should login automatically.
 Use it from the root dir of this module.
 
 ### Validate puppet
