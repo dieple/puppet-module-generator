@@ -2,6 +2,8 @@
 # Create and configure a module using my gist
 # Tested on MacOSX El Captain
 # https://gist.github.com/jecnua/57024265332c03e9edd70647473a793e
+# For a collection of most of the files:
+# https://github.com/jecnua/puppet-module-generator
 # To avoid breaking stuff this script works only
 # to create NEW modules. FOR NOW :)
 # Usage:
