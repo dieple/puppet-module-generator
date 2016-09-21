@@ -4,13 +4,25 @@ TBD
 
 ## Testing
 
+Test kitchen works in two steps: first you need to _converge_
+(it will boot the machine and provision it with the provisioner of choice),
+second you need to _verify_ (apply the test suit). You will usually converge
+when you change the puppet and verify after every converge _or_ when adding new
+tests. No need to converge if you only add tests.
+
+    "The concept behind Test Kitchen is that it allows you
+    to provision (convergence testing) an environment on a given platform
+    (or platforms) and then execute a suite of tests to verify the environment has
+    been set up as expected. But, as with software, you need to write effective
+    tests – not just the assert(true) tests I see all too often." - https://goo.gl/9yovGL
+
 This framework use test kitchen. All you have to run here for this project is
 
-    kitchen command_1  # command says hello world
+    kitchen command_1
     ..
-    kitchen command_x #command says changeme
+    kitchen command_x
 
-if you want to know more about test kitchen then visit https://goo.gl/TeGCEZ
+If you want to know more about test kitchen then visit https://goo.gl/TeGCEZ
 
 ### Override the tests
 
