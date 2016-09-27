@@ -14,9 +14,9 @@ chmod 700 utilities/delete_reports.sh
 librarian-puppet init
 bundle init
 # Get the default gemfile
-wget -O Gemfile wget https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/Gemfile
+wget -O Gemfile https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/Gemfile
 # Get the default .gitignore
-wget -O .gitignore wget https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
+wget -O .gitignore https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
 #
 bundle install
 kitchen init
@@ -26,7 +26,7 @@ wget -O _RENAME_ME_.kitchen.local.yml https://gist.github.com/jecnua/005b432fc0c
 wget -O .kitchen.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.kitchen.yml
 # Rubocop
 wget -O .rubocop.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.rubocop.yml
-# Rubocop
+# Travis
 wget -O .travis.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.travis.yml
 
 # Adding simple test in default test dir

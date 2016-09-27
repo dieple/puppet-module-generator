@@ -2,13 +2,15 @@
 # Create and configure a module using my gist
 # Tested on MacOSX El Captain
 # https://gist.github.com/jecnua/57024265332c03e9edd70647473a793e
-# For a collection of most of the files:
+# For a collection of most of the filesa and probably more update version:
 # https://github.com/jecnua/puppet-module-generator
 # To avoid breaking stuff this script works only
 # to create NEW modules. FOR NOW :)
 # Usage:
-# Download this script, chmod it 700 and try:
-# ./generate-module.sh aaa bbb
+# $ cd /tmp
+# $ wget -O generate-puppet-module-with-test-kitchen.sh https://gist.githubusercontent.com/jecnua/57024265332c03e9edd70647473a793e/raw/puppet-module-with-test-kitchen-generate
+# $ chmod 700 generate-puppet-module-with-test-kitchen.sh
+# $ ./generate-puppet-module-with-test-kitchen.sh aaa bbb
 
 if [ $# -ne 2 ]; then
   echo 1>&2 "Usage: $0 username modulename"
@@ -46,9 +48,9 @@ chmod 700 utilities/delete_reports.sh
 librarian-puppet init
 bundle init
 # Get the default gemfile
-wget -O Gemfile wget https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/Gemfile
+wget -O Gemfile https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/Gemfile
 # Get the default .gitignore
-wget -O .gitignore wget https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
+wget -O .gitignore https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
 # Get the default CHANGELOG.md
 wget -O CHANGELOG.md https://gist.github.com/jecnua/02e620b42b476a888844b38d1e7ec1c8/raw/
 # Get the default README.md
@@ -62,7 +64,7 @@ wget -O _RENAME_ME_.kitchen.local.yml https://gist.github.com/jecnua/005b432fc0c
 wget -O .kitchen.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.kitchen.yml
 # Rubocop
 wget -O .rubocop.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.rubocop.yml
-# Rubocop
+# Travis
 wget -O .travis.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.travis.yml
 
 # Adding simple test in default test dir
