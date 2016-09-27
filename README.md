@@ -11,3 +11,4 @@ Example of usage:
 
 - Fix test BEFORE rubocop
 - Next step curl-bash it
+- Clean kitchen.yml from all comments and put a new file for that

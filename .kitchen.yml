@@ -11,7 +11,7 @@ platforms:
     # require_chef_omnibus: true
     use_cache: true
     provision_command: #You need to recreate the container for this to work
-    - apt-get install --assume-yes net-tools nano vim telnet
+    - apt-get install --assume-yes net-tools nano vim telnet htop
     # image: if you need to specify
     # socket: <%= ENV['DOCKER_HOST'] %>
     # dockerfile: ubuntu-dockerfile # In case you need more settings
