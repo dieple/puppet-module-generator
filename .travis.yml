@@ -20,5 +20,18 @@ script:
   - rake validate
   - rake metadata_lint
 
+branches:
+  only:
+    - master # Sensible default
 notifications:
-  email: true
+  email:
+    on_success: change # default: change
+    on_failure: always # default: always
+  # hipchat:
+  #   rooms:
+  #     - <token>@<token>
+  #   template:
+  #     - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} Details: %{build_url} Change view: %{compare_url}'
+  #   on_success: change # default: change
+  #   on_failure: always # default: always
+  ## Before using the hipchat options get a token and choose a room

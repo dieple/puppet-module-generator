@@ -10,3 +10,4 @@ Example of usage:
 ## TODO
 
 - Fix test BEFORE rubocop
+- Next step curl-bash it
