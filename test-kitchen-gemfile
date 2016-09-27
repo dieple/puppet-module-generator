@@ -13,11 +13,9 @@ gem 'kitchen-config'
 gem 'kitchen-verifier-serverspec'
 gem 'net-ssh'
 gem 'rubocop' # Run test on ruby syntax
-
-# Not used but you should have it
 gem 'rspec'
 gem 'rspec-puppet'
-gem 'metadata-json-lint'
+gem 'metadata-json-lint' # https://github.com/voxpupuli/metadata-json-lint
 gem 'puppet-lint'
 gem 'facter'
 gem 'puppetlabs_spec_helper'
