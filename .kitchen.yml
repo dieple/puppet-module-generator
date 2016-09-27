@@ -3,7 +3,7 @@
 # NOTE: Every change/override and driver/platform level needs a destroy/converge
 driver:
   name: docker
-  use_sudo: false  # Without this option, it fails on MAC
+  use_sudo: false  # Without this option, it fails on MAC!!
 
 platforms:
 - name: ubuntu  # Resolve on docker images on dockerhub

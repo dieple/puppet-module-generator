@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Gemfile for testing puppet modules with test-kitchen
 source 'https://rubygems.org'
 

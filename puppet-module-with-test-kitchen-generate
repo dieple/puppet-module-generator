@@ -46,7 +46,7 @@ chmod 700 utilities/delete_reports.sh
 librarian-puppet init
 bundle init
 # Get the default gemfile
-wget -O Gemfile wget https://gist.github.com/jecnua/aefffebda8eeb8f9a541323bcdeb5815/raw/
+wget -O Gemfile wget https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/Gemfile
 # Get the default .gitignore
 wget -O .gitignore wget https://gist.github.com/jecnua/50c8f260c59a3d27d20c5eeed1bee468/raw/
 # Get the default CHANGELOG.md
@@ -59,7 +59,9 @@ kitchen init
 # Download override example
 wget -O _RENAME_ME_.kitchen.local.yml https://gist.github.com/jecnua/005b432fc0cb7bbdbcf37dd6a060d5e8/raw/
 # Get the default kitchen.yml
-wget -O .kitchen.yml https://gist.github.com/jecnua/b3550ac1cab861bceb6f1b38644b9b2e/raw/
+wget -O .kitchen.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.kitchen.yml
+# Rubocop
+wget -O .rubocop.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.rubocop.yml
 #
 
 # Adding simple test in default test dir
@@ -72,9 +74,13 @@ wget -O test/integration/default/serverspec/spec_helper.rb https://gist.github.c
 # Get localhost test
 wget -O test/integration/default/serverspec/default/default_spec.rb https://gist.github.com/jecnua/004f45df291bfd8e86e72556f22ae0ab/raw/
 
+# Fix the Puppetfile, rakefile, and so on
+rake rubocop:auto_correct
+
 time kitchen converge
 time kitchen verify
 time rake validate
+time rake rubocop
 
 git add .
 git commit -m 'First commit'
