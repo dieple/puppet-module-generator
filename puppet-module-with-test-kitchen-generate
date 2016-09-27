@@ -62,7 +62,8 @@ wget -O _RENAME_ME_.kitchen.local.yml https://gist.github.com/jecnua/005b432fc0c
 wget -O .kitchen.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.kitchen.yml
 # Rubocop
 wget -O .rubocop.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.rubocop.yml
-#
+# Rubocop
+wget -O .travis.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.travis.yml
 
 # Adding simple test in default test dir
 echo "class {'::$NAME':}" >> test/default.pp
