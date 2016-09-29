@@ -84,7 +84,16 @@ Run:
 
     puppet-lint --no-autoloader_layout-check --FIX manifests/* && \
     puppet-lint --no-autoloader_layout-check --FIX test/\*.pp && \
+    rake rubocop:auto_correct
+
+### Validate puppet
+
+Run:
+
+    puppet-lint --no-autoloader_layout-check manifests/* && \
+    puppet-lint --no-autoloader_layout-check test/\*.pp && \
     rake validate
+    rake rubocop
 
 ### To test with with test-kitchen
 
