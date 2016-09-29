@@ -30,7 +30,7 @@ wget -O .rubocop.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea
 wget -O .travis.yml https://gist.githubusercontent.com/jecnua/235ba3a90182da2ea9094a263f2e55e7/raw/.travis.yml
 
 # Adding simple test in default test dir
-echo "class {'::$NAME':}" >> test/default.pp
+echo "notice 'here'" >> test/default.pp
 mkdir test/reports
 mkdir test/integration/default/serverspec/
 mkdir test/integration/default/serverspec/default/
